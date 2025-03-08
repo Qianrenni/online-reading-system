@@ -1,0 +1,335 @@
+<template>
+  <view :style="{'background-color':bgcolor}">
+    <!-- 标题导航栏 -->
+    <u-navbar :background="background" :border-bottom="false" :title="book.name" :title-bold="true"
+              :title-color="fontcolor">
+      <view slot="right" style="padding-right: 15rpx;">
+        <u-icon name="download" size="40" style="padding-right: 30rpx;"></u-icon>
+        <!-- 待添加加入书架及移出书架事件 -->
+        <u-icon custom-prefix="icon-book" name="jiarushujia" size="40" style="padding-right: 15rpx;"></u-icon>
+        <u-icon name="more-dot-fill" size="40"></u-icon>
+      </view>
+    </u-navbar>
+
+    <!-- 正文 -->
+    <view class="u-padding-30" @click="click">
+      <view :style="{'font-size':'50rpx','color':fontcolor,'font-weight':'bold'}">第{{ currentChapterId }}章
+        {{ catalog[currentChapterId - 1][0] }}
+      </view>
+      <view>
+        <u-parse :html="text" :selectable="true" :show-with-animation="true" :style="{'font-size':size,'padding-top':'20rpx'
+				}"></u-parse>
+      </view>
+    </view>
+    <!-- 目录 -->
+    <u-popup v-model="sidebar" :safe-area-inset-bottom="false" width="550rpx" z-index="999">
+      <view class="wrap u-border-bottom">
+        <view class="title">{{ book.name }}</view>
+        <view class="author">{{ book.author }}</view>
+        <view class="u-flex">
+          <view class="status u-row-left">共{{ catalog.length }}章</view>
+          <view style="position: absolute;right:30rpx;" v-on:click="tabsore">
+            <u-icon :label="sore?'倒序':'正序'" :name="sore?'daoxu':'zhengxu'" color="#2979ff" custom-prefix="icon-book"
+                    label-color="#2979ff" size="28"></u-icon>
+          </view>
+        </view>
+      </view>
+      <u-subsection :current="0" :list="list" style="border-radius: 0px;" @change="tabcurrent"></u-subsection>
+      <view v-if="current == 0">
+        <mescroll-uni :down="downOption" :up="upOption" height="600px" @init="mescrollInit">
+
+          <u-cell-group v-for="item in catalog" :key="item[3]">
+            <u-cell-item :title="`第${item[3]}章 ${item[0]}`" :value="item[1]==0?'免费':'收费'"
+                         @click="goread(item[3])">
+            </u-cell-item>
+          </u-cell-group>
+        </mescroll-uni>
+        <view class="u-border-top" style="text-align: center;padding-top: 20rpx;">
+          <u-icon color="#2979ff" label="下载" label-color="#2979ff" label-size="35" name="download" size="40"></u-icon>
+        </view>
+      </view>
+      <view v-if="current==1">qwq</view>
+    </u-popup>
+    <!-- 底部菜单 -->
+    <u-popup v-model="botton_card" :mask="false" mode="bottom" z-index="998">
+      <view class="u-border-top bottom_set">
+        <view class="title">{{ value }}% · 第{{ currentChapterId }}章 {{ catalog[currentChapterId - 1][0] }}</view>
+        <view class="u-flex">
+          <view class="u-flex-1 u-padding-left-30 u-padding-right-30" @click="pre_ch">上一章</view>
+          <u-slider v-model="value" active-color="#000000" block-width="35" class="u-flex-5" height="5" max="100"
+                    min="1"></u-slider>
+          <view class="u-flex-1 u-padding-right-30 u-padding-left-30" @click="next_ch">下一章</view>
+        </view>
+        <u-grid :border="false" :col="3" class="u-padding-top-35 u-padding-bottom-10">
+          <u-grid-item style="background:rgba(0,0, 0, 0);" @click="tabside">
+            <u-icon :size="46" name="list-dot"></u-icon>
+            <view class="grid-text">目录</view>
+          </u-grid-item>
+          <u-grid-item v-if="night" style="background:rgba(0,0, 0, 0);">
+            <view data-bgcolor="#000000" data-fontcolor="#fff" @click="zhuti">
+              <u-icon :size="46" custom-prefix="icon-book" name="yejian"></u-icon>
+              <view class="grid-text">夜间</view>
+            </view>
+          </u-grid-item>
+		  <u-grid-item v-else style="background:rgba(0,0, 0, 0);">
+		    <view data-bgcolor="#fffae8" data-fontcolor="#303133" @click="zhuti">
+		      <u-icon :size="46" custom-prefix="icon-book" name="rijian"></u-icon>
+		      <view class="grid-text">日间</view>
+		    </view>
+		  </u-grid-item>
+          <u-grid-item style="background:rgba(0,0, 0, 0);" @click="tabsetting">
+            <u-icon :size="46" name="setting"></u-icon>
+            <view class="grid-text">设置</view>
+          </u-grid-item>
+        </u-grid>
+      </view>
+    </u-popup>
+
+
+    <!-- 设置 -->
+    <u-popup v-model="setting" :mask="false" mode="bottom" z-index="999">
+      <view class="u-border-top tabbar_bottoms" style="background-color: #fffae8;">
+        <!-- 亮度需根据实际部署调用相应api，可选功能 -->
+        <!-- <view class="u-flex u-padding-top-40">
+          <view class="u-padding-left-40">亮度</view>
+          <view class="u-padding-left-55">
+            <u-slider style="width: 350rpx;" v-model="value" height="5" block-color="#000000" active-color="#000000" block-width="35" min="1" max="100"></u-slider>
+          </view>
+        </view> -->
+        <view class="u-flex u-padding-top-40">
+          <view class="u-padding-left-40">字号</view>
+          <u-button :hair-line="true" :plain="false" hover-class="none" size="medium" style="background-color:#F2F2F2;"
+                    type="primary" @tap="xiaohao(sizeval)">
+            <u-icon :size="sizeval" color="#000000" custom-prefix="icon-book" name="zitisuoxiao"></u-icon>
+          </u-button>
+          <view>{{ sizeval }}</view>
+          <u-button :hair-line="true" :plain="false" hover-class="none" size="medium" style="background-color:#F2F2F2;"
+                    type="primary" @tap="dahao(sizeval)">
+            <u-icon :size="sizeval" color="#000000" custom-prefix="icon-book" name="zitifangda"></u-icon>
+          </u-button>
+        </view>
+        <view class="u-flex u-padding-top-40">
+          <view class="u-padding-left-40">主题</view>
+          <!-- <u-avatar bg-color="#000000"></u-avatar> -->
+          <view class="u-flex u-padding-left-55">
+            <view class="theme u-margin-right-55" data-bgcolor="#ffffff" data-fontcolor="#303133"
+                  style="background-color:#ffffff;" @click="zhuti"></view>
+            <view class="theme u-margin-right-55 theme_avtive" data-bgcolor="#fffae8" data-fontcolor="#303133"
+                  style="background-color:#fffae8;" @click="zhuti"></view>
+            <view class="theme u-margin-right-55" data-bgcolor="#EBE2CE" data-fontcolor="#303133"
+                  style="background-color:#EBE2CE;" @click="zhuti"></view>
+            <view class="theme u-margin-right-55" data-bgcolor="#000000" data-fontcolor="#fff"
+                  style="background-color:#000000;" @click="zhuti"></view>
+          </view>
+        </view>
+      </view>
+    </u-popup>
+  </view>
+</template>
+
+<script>
+import MescrollMixin from "@/components/mescroll-uni/mescroll-mixins.js";
+import { testRead } from "../../testData/readTest";
+export default {
+  mixins: [MescrollMixin],
+  data() {
+    return {
+      book: {},
+      bgcolor: '#fffae8',
+      fontcolor: '#303133',
+      downOption: {
+        use: false
+      },
+      upOption: {
+        use: false
+      },
+      background: {
+        backgroundColor: '#fffae8'
+      },
+      value: 1,
+      size: '35rpx',
+      sizeval: 35,
+      botton_card: false,
+      sidebar: false,
+	  night: true,
+      list: [
+        {
+          name: '目录'
+        },
+        {
+          name: '书签'
+        }
+      ],
+      sore: true,
+      current: 0,
+      setting: false,
+      menu: false,
+      text: testRead,
+      currentChapterId: 1,
+      catalog: []
+    }
+  },
+  onPageScroll(res) {
+    if (this.botton_card) {
+      this.botton_card = false;
+    }
+  },
+  methods: {
+    zhuti: function (e) {
+      var ztitem = e.currentTarget.dataset;
+      console.log(ztitem);
+      var bgcolor = ztitem.bgcolor;
+      var fontcolor = ztitem.fontcolor;
+	  if(bgcolor === "#000000")
+		this.night = false;
+	  else
+		this.night = true;
+      this.background.backgroundColor = bgcolor;
+      this.bgcolor = bgcolor;
+      this.fontcolor = fontcolor;
+      this.botton_card = !this.botton_card;
+    },
+    dahao(num) {
+      console.log(num);
+      if (num > 100) {
+        return;
+      }
+      this.size = num + 10 + 'rpx';
+      this.sizeval = num + 10;
+    },
+    xiaohao(num) {
+      console.log(num);
+      if (num < 10) {
+        return;
+      }
+      this.size = num - 10 + 'rpx';
+      this.sizeval = num - 10;
+    },
+    click() {
+      this.botton_card = !this.botton_card;
+    },
+    able() {
+      console.log('点击了遮罩层')
+    },
+    tabside() {
+      this.sidebar = !this.sidebar;
+      this.botton_card = false;
+    },
+    tabcurrent(e) {
+      this.current = e
+    },
+    tabsetting() {
+      this.setting = !this.setting;
+      this.botton_card = !this.botton_card;
+    },
+    pre_ch() {
+      console.log('上一章节')
+      // 上一章节
+      if (this.currentChapterId > 2) {
+        this.currentChapterId -= 1;
+        this.getChapterContentFromNetWork();
+      }
+    },
+    next_ch() {
+      console.log('下一章节')
+      // 下一章节
+      if (this.currentChapterId < this.catalog.length) {
+        this.currentChapterId += 1;
+        this.getChapterContentFromNetWork();
+        console.log(this.currentChapterId)
+      }
+    },
+    getChapterContentFromNetWork() {
+		let that=this;
+      uni.request({
+        url: BaseUrl+"/book/read/"+this.book.id+"/page/"+this.currentChapterId,
+        method: "GET",
+        success(res) {
+          this.text = res.data.page_content;
+		  let bookAndChapter = uni.getStorageSync("BookAndChapter") || {};
+		  // console.log(that.book)
+		  bookAndChapter[that.book.id] = this.currentChapterId;
+        }
+      })
+    },
+    tabsore() {
+      this.catalog = this.catalog.reverse();
+      this.sore = !this.sore;
+    },
+    goread(chapterId) {
+      this.currentChapterId = chapterId;
+      console.log(this.currentChapterId);
+	  this.tabside()
+      this.getChapterContentFromNetWork()
+    }
+
+
+  },
+  onLoad() {
+    let bookAndChapter = uni.getStorageSync("BookAndChapter");
+    this.book = uni.getStorageSync("currentBookItem");
+	// console.log(this.book)
+    this.currentChapterId = bookAndChapter[this.book.id];
+    this.catalog = uni.getStorageSync("currentBookChapter")
+    this.getChapterContentFromNetWork()
+  }
+}
+</script>
+
+<style>
+page {
+  background-color: #fffae8;
+}
+</style>
+<style lang="scss" scoped>
+.tabbar_bottoms {
+  padding-bottom: 20rpx;
+}
+
+.theme {
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.theme_avtive {
+  border-style: solid;
+  // border-color:#82848a;
+  border-color: #000000;
+  border-width: 2rpx;
+}
+
+.bottom_set {
+  height: auto;
+  background-color: #fffae9;
+
+  .title {
+    text-align: center;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    color: #606266;
+  }
+}
+
+
+.wrap {
+  padding-top: calc(var(--status-bar-height) + 10px);
+  padding-left: 30rpx;
+  padding-bottom: 20rpx;
+
+  .title {
+    font-size: 30rpx;
+    font-weight: bold;
+  }
+
+  .author {
+    font-size: 25rpx;
+    color: #606266;
+  }
+
+  .status {
+    font-size: 25rpx;
+    color: #909399;
+  }
+}
+</style>

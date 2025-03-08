@@ -1,0 +1,400 @@
+ 
+/* 宽度 */
+.axin-w-100{ width: 750rpx; }
+.axin-row {
+  margin-right: -20rpx;
+  margin-left: -20rpx;
+  /* #ifndef APP-PLUS-NVUE */
+  display: flex;
+  /* #endif */
+  /* flex-wrap: wrap;
+  flex-direction: row; */
+}
+
+.axin-col-1,
+.axin-col-2,
+.axin-col-3,
+.axin-col-4,
+.axin-col-5,
+.axin-col-6,
+.axin-col-7,
+.axin-col-8,
+.axin-col-9,
+.axin-col-10,
+.axin-col-11,
+.axin-col-12{
+  position: relative;
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+}
+.axin-col-12 { width: 750rpx;}
+.axin-col-11 { width: 687.5rpx; }
+.axin-col-10 { width: 625rpx; }
+.axin-col-9 { width: 562.5rpx; }
+.axin-col-8 { width: 500rpx; }
+.axin-col-7 { width: 437.5rpx; }
+.axin-col-6 { width: 375rpx; }
+.axin-col-5 { width: 312.5rpx;}
+.axin-col-4 {width: 250rpx;}
+.axin-col-3 {width: 187.5rpx;}
+.axin-col-2 {width: 125rpx;}
+.axin-col-1 {width: 62.5rpx;}
+
+.axin-col-offset-12 { margin-left: 750rpx;}
+.axin-col-offset-11 { margin-left: 687.5rpx; }
+.axin-col-offset-10 { margin-left: 625rpx; }
+.axin-col-offset-9 { margin-left: 562.5rpx; }
+.axin-col-offset-8 { margin-left: 500rpx; }
+.axin-col-offset-7 { margin-left: 437.5rpx; }
+.axin-col-offset-6 { margin-left: 375rpx; }
+.axin-col-offset-5 { margin-left: 312.5rpx;}
+.axin-col-offset-4 {margin-left: 250rpx;}
+.axin-col-offset-3 {margin-left: 187.5rpx;}
+.axin-col-offset-2 {margin-left: 125rpx;}
+.axin-col-offset-1 {margin-left: 62.5rpx;}
+.axin-col-offset-0 {margin-left: 0;}
+
+/* flex 布局 */
+.axin-flex{
+	/* #ifndef APP-PLUS-NVUE */
+	display:flex;
+	/* #endif */
+	flex-direction:row;
+}
+.axin-flex-row{ flex-direction:row!important; }
+.axin-flex-column{ flex-direction:column!important; }
+.axin-flex-row-reverse{ flex-direction:row-reverse!important; }
+.axin-flex-column-reverse{ flex-direction:column-reverse!important; }
+.axin-flex-wrap{ flex-wrap:wrap;}
+.axin-flex-nowrap{ flex-wrap:nowrap;}
+.axin-justify-start{justify-content:flex-start;}
+.axin-justify-end{justify-content:flex-end;}
+.axin-justify-between{justify-content:space-between;}
+.axin-justify-center{justify-content:center;}
+.axin-align-center{ align-items: center; }
+.axin-align-stretch{ align-items: stretch; }
+.axin-align-start{ align-items: flex-start; }
+.axin-align-end{ align-items: flex-end; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-content-start {align-content: flex-start;}
+.axin-content-end {align-content: flex-end;}
+.axin-content-center {align-content: center;}
+.axin-content-between {align-content: space-between;}
+.axin-content-around {align-content: space-around;}
+.axin-content-stretch {align-content: stretch;}
+/* #endif */
+.axin-flex-1{ flex: 1; }
+.axin-flex-2{ flex: 2; }
+.axin-flex-3{ flex: 3; }
+.axin-flex-4{ flex: 4; }
+.axin-flex-5{ flex: 5; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-flex-shrink{ flex-shrink: 0; }
+/* #endif */
+
+.axin-container {
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+}
+/*  -- 内外边距 -- */
+.axin-m-0 { margin: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-m-auto{ margin: auto; }
+/* #endif */
+.axin-m-1 { margin: 10rpx; }
+.axin-m-2 { margin: 20rpx; }
+.axin-m-3 { margin: 30rpx; }
+.axin-m-4 { margin: 40rpx; }
+.axin-m-5 { margin: 50rpx; }
+.axin-mt-0 { margin-top: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-mt-auto { margin-top: auto; }
+/* #endif */
+.axin-mt-1 { margin-top: 10rpx; }
+.axin-mt-2 { margin-top: 20rpx; }
+.axin-mt-3 { margin-top: 30rpx; }
+.axin-mt-4 { margin-top: 40rpx; }
+.axin-mt-5 { margin-top: 50rpx; }
+.axin-mb-0 { margin-bottom: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-mb-auto { margin-bottom: auto; }
+/* #endif */
+.axin-mb-1 { margin-bottom: 10rpx; }
+.axin-mb-2 { margin-bottom: 20rpx; }
+.axin-mb-3 { margin-bottom: 30rpx; }
+.axin-mb-4 { margin-bottom: 40rpx; }
+.axin-mb-5 { margin-bottom: 50rpx; }
+.axin-ml-0 { margin-left: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-ml-auto { margin-left: auto; }
+/* #endif */
+.axin-ml-1 { margin-left: 10rpx; }
+.axin-ml-2 { margin-left: 20rpx; }
+.axin-ml-3 { margin-left: 30rpx; }
+.axin-ml-4 { margin-left: 40rpx; }
+.axin-ml-5 { margin-left: 50rpx; }
+.axin-mr-0 { margin-right: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-mr-auto { margin-right: auto; }
+/* #endif */
+.axin-mr-1 { margin-right: 10rpx; }
+.axin-mr-2 { margin-right: 20rpx; }
+.axin-mr-3 { margin-right: 30rpx; }
+.axin-mr-4 { margin-right: 40rpx; }
+.axin-mr-5 { margin-right: 50rpx; }
+.axin-mr-0 { margin-top: 0; margin-bottom: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-my-auto { margin-top: auto; margin-bottom: auto; }
+/* #endif */
+.axin-my-1 { margin-top: 10rpx; margin-bottom: 10rpx; }
+.axin-my-2 { margin-top: 20rpx; margin-bottom: 20rpx; }
+.axin-my-3 { margin-top: 30rpx; margin-bottom: 30rpx; }
+.axin-my-4 { margin-top: 40rpx; margin-bottom: 40rpx; }
+.axin-my-5 { margin-top: 50rpx; margin-bottom: 50rpx; }
+.axin-mx-0 { margin-left: 0; margin-right: 0; }
+/* #ifndef APP-PLUS-NVUE */
+.axin-mx-auto { margin-left: auto; margin-right: auto; }
+/* #endif */
+.axin-mx-1 { margin-left: 10rpx; margin-right: 10rpx;}
+.axin-mx-2 { margin-left: 20rpx; margin-right: 20rpx;}
+.axin-mx-3 { margin-left: 30rpx; margin-right: 30rpx;}
+.axin-mx-4 { margin-left: 40rpx; margin-right: 40rpx;}
+.axin-mx-5 { margin-left: 50rpx; margin-right: 50rpx;}
+
+.axin-p-0 { padding: 0; }
+.axin-p { padding: 5rpx; }
+.axin-p-1 { padding: 10rpx; }
+.axin-p-2 { padding: 20rpx; }
+.axin-p-3 { padding: 30rpx; }
+.axin-p-4 { padding: 40rpx; }
+.axin-p-5 { padding: 50rpx; }
+.axin-pt-0 { padding-top: 0; }
+.axin-pt { padding-top: 5rpx; }
+.axin-pt-1 { padding-top: 10rpx; }
+.axin-pt-2 { padding-top: 20rpx; }
+.axin-pt-3 { padding-top: 30rpx; }
+.axin-pt-4 { padding-top: 40rpx; }
+.axin-pt-5 { padding-top: 50rpx; }
+.axin-pb-0 { padding-bottom: 0; }
+.axin-pb-1 { padding-bottom: 10rpx; }
+.axin-pb { padding-bottom: 5rpx; }
+.axin-pb-2 { padding-bottom: 20rpx; }
+.axin-pb-3 { padding-bottom: 30rpx; }
+.axin-pb-4 { padding-bottom: 40rpx; }
+.axin-pb-5 { padding-bottom: 50rpx; }
+.axin-pl-0 { padding-left: 0; }
+.axin-pl { padding-left: 5rpx; }
+.axin-pl-1 { padding-left: 10rpx; }
+.axin-pl-2 { padding-left: 20rpx; }
+.axin-pl-3 { padding-left: 30rpx; }
+.axin-pl-4 { padding-left: 40rpx; }
+.axin-pl-5 { padding-left: 50rpx; }
+.axin-pr-0 { padding-right: 0; }
+.axin-pr { padding-right: 5rpx; }
+.axin-pr-1 { padding-right: 10rpx; }
+.axin-pr-2 { padding-right: 20rpx; }
+.axin-pr-3 { padding-right: 30rpx; }
+.axin-pr-4 { padding-right: 40rpx; }
+.axin-pr-5 { padding-right: 50rpx; }
+.axin-py-0 { padding-top: 0; padding-bottom: 0; }
+.axin-py { padding-top: 5rpx; padding-bottom: 5rpx; }
+.axin-py-1 { padding-top: 10rpx; padding-bottom: 10rpx; }
+.axin-py-2 { padding-top: 20rpx; padding-bottom: 20rpx; }
+.axin-py-3 { padding-top: 30rpx; padding-bottom: 30rpx; }
+.axin-py-4 { padding-top: 40rpx; padding-bottom: 40rpx; }
+.axin-py-5 { padding-top: 50rpx; padding-bottom: 50rpx; }
+.axin-px-0 { padding-left: 0; padding-right: 0; }
+.axin-px-1 { padding-left: 10rpx; padding-right: 10rpx;}
+.axin-px { padding-left: 5rpx; padding-right: 5rpx;}
+.axin-px-2 { padding-left: 20rpx; padding-right: 20rpx;}
+.axin-px-3 { padding-left: 30rpx; padding-right: 30rpx;}
+.axin-px-4 { padding-left: 40rpx; padding-right: 40rpx;}
+.axin-px-5 { padding-left: 50rpx; padding-right: 50rpx;}
+/* 文字大小 */
+.axin-font-small { font-size: 20rpx;}
+.axin-font-sm { font-size: 25rpx;}
+.axin-font { font-size: 30rpx;}
+.axin-font-md { font-size: 35rpx;}
+.axin-font-lg { font-size: 40rpx;}
+.axin-h1{font-size:80rpx; line-height:1.8;}
+.axin-h2{font-size:60rpx; line-height:1.8;}
+.axin-h3{font-size:45rpx; line-height:1.8;}
+.axin-h4{font-size:32rpx; line-height:1.8;}
+.axin-h5{font-size:30rpx; line-height:1.8;}
+.axin-h6{font-size:28rpx; line-height:1.8;}
+/* 文字缩进 */
+/* #ifndef APP-PLUS-NVUE */
+.axin-text-indent{text-indent:2;}
+/* #endif */
+/* 文字划线 */
+.axin-text-through{text-decoration:line-through;}
+/* 文字对齐 */
+.axin-text-left { text-align: left;}
+.axin-text-right { text-align: right;}
+.axin-text-center { text-align: center;}
+/* 文字换行溢出处理 */
+.axin-text-ellipsis {
+	/* #ifndef APP-PLUS-NVUE */
+	overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+	/* #endif */
+	/* #ifdef APP-PLUS-NVUE */
+	lines: 1;
+	/* #endif */
+}
+/* 文字换行溢出处理 */
+.axin-text-ellipsis2 {
+	/* #ifndef APP-PLUS-NVUE */
+	overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+	/* #endif */
+	/* #ifdef APP-PLUS-NVUE */
+	lines: 2;
+	/* #endif */
+}
+/* 文字粗细和斜体 */
+.axin-font-weight-light {font-weight: 300;}      /*细*/
+.axin-font-weight-lighter {font-weight: 100;}/*更细*/
+.axin-font-weight-normal { font-weight: 400;}    /*正常*/
+.axin-font-weight-bold { font-weight: 700;}      /*粗*/
+.axin-font-weight-bolder { font-weight: bold;} /*更粗*/
+.axin-font-italic { font-style: italic;} /*斜体*/
+/* 文字颜色 */
+.axin-text-white {color: #ffffff;}
+.axin-text-primary {color: #007bff;}
+.axin-text-hover-primary { color: #0056b3;}
+.axin-text-secondary {color: #6c757d;}
+.axin-text-hover-secondary { color: #494f54;}
+.axin-text-success {color: #28a745;}
+.axin-text-hover-success{color: #19692c;}
+.axin-text-info { color: #17a2b8;}
+.axin-text-hover-info {color: #0f6674;}
+.axin-text-warning {color: #ffc107;}
+.axin-text-hover-warning { color: #ba8b00;}
+.axin-text-danger { color: #dc3545;}
+.axin-text-hover-danger { color: #a71d2a;}
+.axin-text-light { color: #f8f9fa;}
+.axin-text-hover-light { color: #cbd3da;}
+.axin-text-dark { color: #343a40;}
+.axin-text-hover-dark{ color: #121416;}
+.axin-text-body { color: #212529;}
+.axin-text-muted { color: #6c757d;}
+.axin-text-light-muted { color: #A9A5A0;}
+.axin-text-light-black { color: rgba(0, 0, 0, 0.5);}
+.axin-text-light-white { color: rgba(255, 255, 255, 0.5);}
+
+/* 背景颜色 */
+.axin-bg-primary { background-color: #007bff;}
+.axin-bg-hover-primary:hover{ background-color: #0062cc;}
+.axin-bg-secondary { background-color: #6c757d;}
+.axin-bg-hover-secondary:hover{ background-color: #545b62;}
+.axin-bg-success { background-color: #28a745;}
+.axin-bg-hover-success { background-color: #1e7e34;}
+.axin-bg-info { background-color: #17a2b8;}
+.axin-bg-hover-info { background-color: #117a8b;}
+.axin-bg-warning { background-color: #ffc107;}
+.axin-bg-hover-warning { background-color: #d39e00;}
+.axin-bg-danger { background-color: #dc3545;}
+.axin-bg-hover-danger{ background-color: #bd2130;}
+.axin-bg-light { background-color: #f8f9fa;}
+.axin-bg-hu { background-color: #eeeffa;}
+.axin-bg-hover-light{ background-color: #dae0e5;}
+.axin-bg-dark { background-color: #343a40;}
+.axin-bg-hover-dark { background-color: #1d2124;}
+.axin-bg-white { background-color: #ffffff;}
+.axin-bg-transparent { background-color: transparent;}
+/* 边框 */
+.axin-border { border-width: 1rpx;border-style: solid;border-color: #dee2e6;}
+.axin-border-top {
+  border-top-width: 1rpx;
+  border-top-style: solid;
+  border-top-color: #dee2e6;
+}
+.axin-border-right {
+  border-right-width: 1rpx;
+  border-right-style: solid;
+  border-right-color: #dee2e6;
+}
+.axin-border-bottom {
+  border-bottom-width: 1rpx;
+  border-bottom-style: solid;
+  border-bottom-color: #dee2e6;
+}
+.axin-border-left {
+  border-left-width: 1rpx;
+  border-left-style: solid;
+  border-left-color: #dee2e6;
+}
+.axin-border-0 { border-width: 0!important;}
+.axin-border-top-0 { border-top-width: 0!important;}
+.axin-border-right-0 {border-right-width: 0!important;}
+.axin-border-bottom-0 {border-bottom-width: 0!important;}
+.axin-border-left-0 {border-left-width: 0!important;}
+.axin-border-primary { border-color: #007bff;}
+.axin-border-secondary {border-color: #6c757d;}
+.axin-border-light-secondary {border-color: #E9E8E5;}
+.axin-border-success {border-color: #28a745;}
+.axin-border-info {border-color: #17a2b8;}
+.axin-border-warning {border-color: #ffc107;}
+.axin-border-danger {border-color: #dc3545;}
+.axin-border-light {border-color: #f8f9fa;}
+.axin-border-dark {border-color: #343a40;}
+.axin-border-white {border-color: #FFFFFF;}
+/* 圆角 */
+.axin-rounded { border-radius: 8rpx;}
+.axin-rounded-top {
+  border-top-left-radius: 8rpx;
+  border-top-right-radius: 8rpx;
+}
+.axin-rounded-right {
+  border-top-right-radius: 8rpx;
+  border-bottom-right-radius: 8rpx;
+}
+.axin-rounded-bottom {
+  border-bottom-right-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+}
+.axin-rounded-left {
+  border-top-left-radius: 8rpx;
+  border-bottom-left-radius: 8rpx;
+ }
+.axin-rounded-circle { border-radius: 100rpx;}
+.axin-rounded-0 { border-radius: 0;}
+/* 显示 */
+/* #ifndef APP-PLUS-NVUE */
+.axin-d-none{ display: none; }
+.axin-d-inline-block{ display: inline-block; }
+.axin-d-block{ display: block; }
+/* #endif */
+/* 内容溢出 */
+.axin-overflow-hidden { overflow: hidden;}
+/* 定位 */
+.axin-position-relative { position: relative;}
+.axin-position-absolute { position: absolute;}
+.axin-position-fixed { position: fixed;}
+/* 定位 - 固定顶部 */
+.axin-fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+/* 定位 - 固定底部 */
+.axin-fixed-bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1030;
+}
+.axin-top-0 { top: 0; }
+.axin-left-0 { left: 0; }
+.axin-right-0 { right: 0; }
+.axin-bottom-0 { bottom: 0; }
+
+/* 阴影 */
+/* #ifndef APP-PLUS-NVUE */
+.axin-shadow { box-shadow: 0 2upx 12upx rgba(0, 0, 0, 0.axin-15);}
+.axin-shadow-lg { box-shadow: 0upx 40upx 100upx 0upx rgba(0, 0, 0, 0.axin-175);}
+.axin-shadow-none { box-shadow: none !important;}
+/* #endif */
+

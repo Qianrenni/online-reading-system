@@ -1,0 +1,27 @@
+{
+ 
+  "pages": [
+    {
+		"path": "pages/login/login"
+	},
+	{
+		"path": "pages/admin/admin"
+	},
+	{
+		"path" : "pages/previewAndEdit/previewAndEdit",
+		"style" : 
+		{
+			"navigationBarTitleText" : ""
+		}
+	}
+  ],
+  "globalStyle": {
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "app-plus": {
+      "background": "#efeff4"
+    }
+  }
+}

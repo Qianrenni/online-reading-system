@@ -116,35 +116,43 @@
 
 
 ## 项目结构
-
 ```bash
 online-reading-system/
-├── backend/                # 后端代码目录
-│   ├── run.py              # Flask 主程序入口
-│   ├── config.py           # 配置文件
-│   ├── models_mysql.py     # MySQL 数据库模型
-│   ├── models_mongo.py     # MongoDB 数据库模型
-│   ├── routes/             # 路由模块
-│   │   ├── admin_routes.py # 管理员相关路由
-│   │   ├── user_routes.py  # 用户相关路由
-│   ├── static/             # 静态资源
-│   └── templates/          # 模板文件
-├── frontend-admin/         # 管理员前端代码目录
-│   ├── pages/              # 页面组件
-│   ├── components/         # 公共组件
-│   ├── assets/             # 静态资源
-│   └── App.vue             # 根组件
-├── frontend-user/          # 用户端前端代码目录
-│   ├── pages/              # 页面组件
-│   ├── components/         # 公共组件
-│   ├── assets/             # 静态资源
-│   └── App.vue             # 根组件
-├── nginx/                  # Nginx 配置目录
-│   └── nginx.conf          # Nginx 配置文件
-├── docker-compose.yml      # Docker Compose 配置文件
-├── README.md               # 项目说明文档
-└── requirements.txt        # Python 依赖包
+├── backend-python/
+│   ├── app/
+│   │   ├── config.py # Flask 配置文件(mongodb,redis,mysql连接配置)
+│   │   ├── models/ # 数据库模型
+│   │   ├── routes/ # 路由
+│   │   ├── services/ # 业务逻辑
+│   │   ├── utils/
+│   │   │   ├── batchhandelepub.py # epub文件批量处理上传数据库,只接受epub格式文件
+│   │   │   ├── payparms.py # 支付宝沙箱支付参数,服务器图片等静态资源SERVERURL配置
+├── admin-end/ # 管理员端未打包源码
+├── user-end/ # 用户端未打包源码
+├── nginx/ # Nginx容器配置,打包两个前端,用户端和管理员端
+│   ├── nginx.conf # Nginx 配置文件
+│   ├── Dockerfile # Nginx 配置文件
 ```
+## 后端快速开始
+1. 克隆项目到本地,并将backend-python单独作为一个项目
+2. 配置config.py,将里面的三个数据库连接配置修改为自己的配置
+3. 配置payparms.py,将里面的支付宝沙箱支付参数配置修改为自己的配置,以及serverUrl用来提供静态资源路径
+## Docker方式打包后端
+1. 进入backend-python目录,找到Dockerfile文件,执行docker build -t online-reading-system-backend .
+2. docker命令启动:
+    ```bash
+   docker run  -d ^
+   -p 5000:5000 ^
+   -e SERVER_URL="http://[your ip]/api" ^ #nginx代理后端,所以添加/api
+   -e MONGO_URL="mongodb://host.docker.internal:27017/reading" ^
+   -e SQLALCHEMY_DATABASE_URI="mysql+pymysql://root:123456@host.docker.internal:3306/reading" ^
+   -e REDIS_URL="redis://host.docker.internal:6379/0" ^
+   -e REDIS_ENABLED="true" ^
+   -e SENSITIVE_ENABLED="false" ^
+   --name flask_container ^
+   --network onlinereading ^  # docker网络
+    readingserver
+    ```
 ## 联系我们
 
 如果您在使用本项目时遇到任何问题，或者有任何建议和反馈，请通过以下方式联系我们：
